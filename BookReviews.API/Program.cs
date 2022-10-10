@@ -1,5 +1,7 @@
+using BookReviews.Data;
 using BookReviews.Interfaces;
 using BookReviews.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// Entity Framework - Add DbContext to services - Setup Connection string from appsettings.json "BookReviewsDb"
+builder.Services.AddDbContext<BookReviewDataContext>(
+    z => z.UseNpgsql(builder.Configuration.GetConnectionString("BookReviewsDb")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

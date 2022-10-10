@@ -56,7 +56,7 @@ namespace BookReviews.Data
                 },
                 new Author
                 {
-                    Id = 1,
+                    Id = 3,
                     FirstName = "Brian",
                     LastName = "Herbert",
                     IsDeleted = false
@@ -74,7 +74,7 @@ namespace BookReviews.Data
                 },
                 new Book
                 {
-                    Id = 1,
+                    Id = 2,
                     Title = "Book 2",
                     AuthorId = 1,
                     NumberOfPages = 400,
@@ -83,7 +83,7 @@ namespace BookReviews.Data
                 },
                 new Book
                 {
-                    Id = 1,
+                    Id = 3,
                     Title = "Book 3",
                     AuthorId = 1,
                     NumberOfPages = 400,
