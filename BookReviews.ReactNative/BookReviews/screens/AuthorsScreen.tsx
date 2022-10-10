@@ -1,14 +1,20 @@
 import { StyleSheet } from 'react-native';
+import { loadAuthors } from '../api';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { RootTabScreenProps } from '../types';
 
-export default function TabTwoScreen() {
+export default function AuthorsScreen({ navigation }: RootTabScreenProps<'AuthorsTab'>) {
+
+  const authors = loadAuthors();
+  console.log(authors);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Authors</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <EditScreenInfo path="/screens/AuthorsScreen.tsx" />
     </View>
   );
 }

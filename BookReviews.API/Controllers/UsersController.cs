@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookReviews.API.Controllers
 {
+    /// <summary>
+    /// This is the UsersController.  It contains all the endpoints for user functionality.
+    /// </summary>
+    [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : Controller
     {
         private readonly IUserService _userService;

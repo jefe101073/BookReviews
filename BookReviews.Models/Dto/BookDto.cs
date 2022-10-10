@@ -16,7 +16,7 @@ namespace BookReviews.Models.Dto
         public double? StarRating { get; set; } // Calculated value based on average reviews, value will update when review is added.
         
     }
-    public class BookDto
+    public class BookDto : AddBookDto
     {
         public bool IsDeleted { get; set; } = false;
         public int? DeletedByUserId { get; set; }
