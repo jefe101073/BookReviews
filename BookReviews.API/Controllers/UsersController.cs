@@ -41,6 +41,7 @@ namespace BookReviews.API.Controllers
         [Route("{id}")]
         public async Task<UserDto?> GetUserAsync(int id) => await _userService.GetUserAsync(id);
 
+
         /// <summary>
         /// Adds a user to the database
         /// </summary>
@@ -68,8 +69,8 @@ namespace BookReviews.API.Controllers
         /// <param name="password"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("authenticate/{email}/{password}")]
-        public async Task<bool> AuthenticateUserAsync(string email, string password) => await _userService.AuthenticateUserAsync(email, password);
+        [Route("authenticate")]
+        public async Task<UserDto?> AuthenticateUserAsync([FromBody] UserDto user) => await _userService.AuthenticateUserAsync(user);
 
         /// <summary>
         /// Checks if a user has IsDeleted or IsUserBlocked flag and returns boolean

@@ -51,19 +51,37 @@ namespace BookReviews.Services
             }
         }
 
-        public async Task<bool> AuthenticateUserAsync(string email, string password)
+        public async Task<UserDto?> AuthenticateUserAsync(UserDto user)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(e => e.Email == email);
-            if (user == null || user.Password == null)
+            if(string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
             {
-                return false;
+                return null;
             }
-            var passwordDecrypted = DataHelpers.PasswordDecrypt(user.Password);
+            var check = await _context.Users.FirstOrDefaultAsync(e => e.Email == user.Email);
+            if (check == null || check.Password == null)
+            {
+                return null;
+            }
+            var passwordDecrypted = DataHelpers.PasswordDecrypt(check.Password);
             if (string.IsNullOrEmpty(passwordDecrypted))
             {
-                return false;
+                return null;
             }
-            return password.Equals(passwordDecrypted, StringComparison.Ordinal);
+            if(user.Password.Equals(passwordDecrypted, StringComparison.Ordinal))
+            {
+                return new UserDto
+                {
+                    Email = check.Email,
+                    Id = check.Id,
+                    Password = check.Password,
+                    FirstName = check.FirstName,
+                    LastName = check.LastName,
+                    DeletedByUserId = check.DeletedByUserId,
+                    DeletedOn = check.DeletedOn,
+                    IsDeleted = check.IsDeleted
+                };
+            }
+            return null;
         }
 
         // Mark the deleted flag as true for the given user and return void
