@@ -1,159 +1,138 @@
-﻿//using BookReviews.Data;
-//using BookReviews.Models.Dto;
-//using BookReviews.Data;
-//using BookReviews.Models.Dto;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using BookReviews.Data;
+using BookReviews.Models.Dto;
+using BookReviews.Data;
+using BookReviews.Models.Dto;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-//namespace BookReviews.Tests.DataForTests
-//{
-//    public static class TestData
-//    {
-//        public static List<RestaurantDto> RestaurantList;
-//        public static List<ReviewDto> ReviewList;
-//        public static List<UserDto> UserList;
+namespace BookReviews.Tests.DataForTests
+{
+    public static class TestData
+    {
+        public static List<AuthorDto> AuthorList;
+        public static List<BookDto> BookList;
+        public static List<UserDto> UserList;
+        public static List<StarRatingDto> StarRatings;
+        public static List<ReviewDto> ReviewList;
 
-//        static TestData()
-//        {
-//            RestaurantList = new List<RestaurantDto>();
-//            ReviewList = new List<ReviewDto>();
-//            UserList = new List<UserDto>();
-//        }
+        static TestData()
+        {
+            AuthorList = new List<AuthorDto>();
+            BookList = new List<BookDto>();
+            UserList = new List<UserDto>();
+            StarRatings = new List<StarRatingDto>();
+            ReviewList = new List<ReviewDto>();
+        }
 
-//        public static void LoadData()
-//        {
-//            RestaurantList = new List<RestaurantDto>
-//            {
-//                new RestaurantDto()
-//                {
-//                    Id = 1,
-//                    Name = "McDonald's",
-//                    Description = "Fast food burgers and fries.",
-//                    Address1 = "111 McDonald Road",
-//                    Address2 = "Suite 4",
-//                    City = "Pittsburgh",
-//                    State = "PA",
-//                    PostalCode = "15237",
-//                    IsDeleted = false,
-//                    AveragePriceRating = 1,
-//                    AverageStarRating = 1,
-//                    DeletedByUserId = null,
-//                    DeletedOn = null
-//                },
-//                new RestaurantDto()
-//                {
-//                    Id = 2,
-//                    Name = "Burger King",
-//                    Description = "Fast food burgers and fries.",
-//                    Address1 = "111 BK Road",
-//                    Address2 = null,
-//                    City = "Pittsburgh",
-//                    State = "PA",
-//                    PostalCode = "15239",
-//                    IsDeleted = false,
-//                    AveragePriceRating = 1,
-//                    AverageStarRating = 1,
-//                    DeletedByUserId = null,
-//                    DeletedOn = null
-//                },
-//                new RestaurantDto()
-//                {
-//                    Id = 3,
-//                    Name = "White Castle",
-//                    Description = "Fast food burgers and fries.",
-//                    Address1 = "111 White Castle Road",
-//                    Address2 = null,
-//                    City = "Indianapolis",
-//                    State = "IN",
-//                    PostalCode = "46260",
-//                    IsDeleted = true,
-//                    AveragePriceRating = 1,
-//                    AverageStarRating = 5,
-//                    DeletedByUserId = 1,
-//                    DeletedOn = DateTime.UtcNow
-//                }
-//            };
+        public static void LoadData()
+        {
+            UserList = new List<UserDto> {
+                new UserDto
+                {
+                    Id = 1,
+                    FirstName = "Admin",
+                    LastName = "User",
+                    Email = "admin@admin.com",
+                    IsDeleted = false,
+                    Password = DataHelpers.PasswordEncrypt("password")
+                },
+                new UserDto
+                {
+                    Id = 2,
+                    FirstName = "Jeff",
+                    LastName = "McCann",
+                    Email = "jefe101073@gmail.com",
+                    IsDeleted = false,
+                    Password = DataHelpers.PasswordEncrypt("password")
+                }
+           };
+            StarRatings = new List<StarRatingDto> {
+                new StarRatingDto { Id = 1, Text = "*", Value = "Poor" },
+                new StarRatingDto { Id = 2, Text = "**", Value = "Moderate" },
+                new StarRatingDto { Id = 3, Text = "***", Value = "Good" },
+                new StarRatingDto { Id = 4, Text = "****", Value = "Very Good" },
+                new StarRatingDto { Id = 5, Text = "*****", Value = "Excellent" }
+                };
+            AuthorList = new List<AuthorDto> {
+                new AuthorDto
+                {
+                    Id = 1,
+                    FirstName = "Stephen",
+                    LastName = "King",
+                    IsDeleted = false
+                },
+                new AuthorDto
+                {
+                    Id = 2,
+                    FirstName = "Frank",
+                    LastName = "Herbert",
+                    IsDeleted = false
+                },
+                new AuthorDto
+                {
+                    Id = 3,
+                    FirstName = "Brian",
+                    LastName = "Herbert",
+                    IsDeleted = false
+                }
+            };
+            BookList = new List<BookDto> {
+                new BookDto
+                {
+                    Id = 1,
+                    Title = "Book 1",
+                    AuthorId = 1,
+                    NumberOfPages = 400,
+                    IsDeleted = false,
+                    StarRating = 2,
+                },
+                new BookDto
+                {
+                    Id = 2,
+                    Title = "Book 2",
+                    AuthorId = 1,
+                    NumberOfPages = 400,
+                    IsDeleted = false,
+                    StarRating = 2,
+                },
+                new BookDto
+                {
+                    Id = 3,
+                    Title = "Book 3",
+                    AuthorId = 1,
+                    NumberOfPages = 400,
+                    IsDeleted = false,
+                    StarRating = 2,
+                }
+            };
+            ReviewList = new List<ReviewDto> {
+                new ReviewDto
+                {
+                    Id = 1,
+                    UserId = 1,
+                    BookId = 1,
+                    StarRatingId = 4
+                },
+                new ReviewDto
+                {
+                    Id = 2,
+                    UserId = 1,
+                    BookId = 2,
+                    StarRatingId = 3
+                },
+                new ReviewDto
+                {
+                    Id = 3,
+                    UserId = 1,
+                    BookId = 3,
+                    StarRatingId = 5
+                }
+            };
 
-//            ReviewList = new List<ReviewDto>
-//            {
-//                new ReviewDto
-//                {
-//                    Id = 1,
-//                    UserId = 1,
-//                    RestaurantId = 1,
-//                    Title = "McDonalds is quck and easy.",
-//                    UserReview = "standard fast food",
-//                    PriceRatingId = 1,
-//                    StarRatingId = 2,
-//                    IsDeleted = false,
-//                    DeletedByUserId = null,
-//                    DeletedOn = null
-//                },
-//                new ReviewDto
-//                {
-//                    Id = 2,
-//                    UserId = 1,
-//                    RestaurantId = 2,
-//                    Title = "Burger King uses FIRE!",
-//                    UserReview = "flamed grilled to perfection",
-//                    PriceRatingId = 1,
-//                    StarRatingId = 3,
-//                    IsDeleted = false,
-//                    DeletedByUserId = null,
-//                    DeletedOn = null
-//                },
-//                new ReviewDto
-//                {
-//                    Id = 3,
-//                    UserId = 1,
-//                    RestaurantId = 3,
-//                    Title = "Poor White Castle :(",
-//                    UserReview = "Wish they had more locations",
-//                    PriceRatingId = 1,
-//                    StarRatingId = 3,
-//                    IsDeleted = true,
-//                    DeletedByUserId = 1,
-//                    DeletedOn = DateTime.UtcNow
-//                },
-//            };
-
-//            UserList = new List<UserDto>
-//            {
-//                new UserDto()
-//                {
-//                    Id = 1,
-//                    FirstName = "Admin",
-//                    LastName = "User",
-//                    Email = "admin@admin.com",
-//                    IsDeleted = false,
-//                    IsUserBlocked = false,
-//                    Password = DataHelpers.PasswordEncrypt("password")
-//                },
-//                new UserDto()
-//                {
-//                    Id = 2,
-//                    FirstName = "Jeff",
-//                    LastName = "McCann",
-//                    Email = "jefe101073@gmail.com",
-//                    IsDeleted = false,
-//                    IsUserBlocked = false,
-//                    Password = DataHelpers.PasswordEncrypt("password")
-//                },
-//                new UserDto()
-//                {
-//                    Id = 3,
-//                    FirstName = "Deleted",
-//                    LastName = "McDeleterson",
-//                    Email = "deleted@gmail.com",
-//                    IsDeleted = true,
-//                    IsUserBlocked = false,
-//                    Password = DataHelpers.PasswordEncrypt("deleted")
-//                }
-//            };
-
-//        }
-//    }
-//}
+        }
+    }
+}

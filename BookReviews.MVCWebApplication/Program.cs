@@ -10,7 +10,7 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -18,6 +18,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IAuthorApplicationService, AuthorApplicationService>();
 builder.Services.AddScoped<IBookApplicationService, BookApplicationService>();
 builder.Services.AddScoped<IUserApplicationService, UserApplicationService>();
+builder.Services.AddScoped<IReviewApplicationService, ReviewApplicationService>();
 builder.Services.AddScoped<IAPIClientService, APIClientService>();
 
 var app = builder.Build();

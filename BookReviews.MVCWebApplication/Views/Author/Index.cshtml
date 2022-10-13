@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "../Shared/_Layout";
+}
+
+@using BookReviews.Models.Dto
+
+@model List<AuthorDto>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Last Name</th>
+                <th scope="col">First Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        @Html.ActionLink("Edit", "Edit", new { id=a.Id })
+                    </th>
+                    <th scope="row">
+                        @Html.ActionLink("Delete", "Delete", new { id=a.Id })
+                    </th>
+                    <td>
+                        @Html.Label(a.LastName)
+                    </td>
+                    <td>
+                        @Html.Label(a.FirstName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.ActionLink("Add New","Add","Author",null, new { @class="btn btn-primary"})
+}

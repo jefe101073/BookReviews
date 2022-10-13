@@ -55,6 +55,7 @@ namespace BookReviews.Data.Migrations
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     BookId = table.Column<int>(type: "integer", nullable: false),
                     StarRatingId = table.Column<int>(type: "integer", nullable: false),
+                    DateBookWasRead = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     DeletedByUserId = table.Column<int>(type: "integer", nullable: true),
                     DeletedOn = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
@@ -119,12 +120,12 @@ namespace BookReviews.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "Id", "BookId", "DeletedByUserId", "DeletedOn", "IsDeleted", "StarRatingId", "UserId" },
+                columns: new[] { "Id", "BookId", "DateBookWasRead", "DeletedByUserId", "DeletedOn", "IsDeleted", "StarRatingId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1, null, null, false, 4, 1 },
-                    { 2, 2, null, null, false, 3, 1 },
-                    { 3, 3, null, null, false, 5, 1 }
+                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, false, 4, 1 },
+                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, false, 3, 1 },
+                    { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, false, 5, 1 }
                 });
 
             migrationBuilder.InsertData(

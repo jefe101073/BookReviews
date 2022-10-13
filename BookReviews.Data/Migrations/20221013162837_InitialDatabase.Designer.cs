@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookReviews.Data.Migrations
 {
     [DbContext(typeof(BookReviewDataContext))]
-    [Migration("20221008200054_InitialDatabase")]
+    [Migration("20221013162837_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,6 +152,9 @@ namespace BookReviews.Data.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("DateBookWasRead")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int?>("DeletedByUserId")
                         .HasColumnType("integer");
 
@@ -176,6 +179,7 @@ namespace BookReviews.Data.Migrations
                         {
                             Id = 1,
                             BookId = 1,
+                            DateBookWasRead = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             StarRatingId = 4,
                             UserId = 1
@@ -184,6 +188,7 @@ namespace BookReviews.Data.Migrations
                         {
                             Id = 2,
                             BookId = 2,
+                            DateBookWasRead = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             StarRatingId = 3,
                             UserId = 1
@@ -192,6 +197,7 @@ namespace BookReviews.Data.Migrations
                         {
                             Id = 3,
                             BookId = 3,
+                            DateBookWasRead = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             StarRatingId = 5,
                             UserId = 1

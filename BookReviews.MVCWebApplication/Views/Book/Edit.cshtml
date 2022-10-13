@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using BookReviews.Models.Dto
+
+@model BookDto
+
+@using (Html.BeginForm("Edit", "Book", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.AuthorLastName, "Author Last Name:")
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.AuthorLastName, new { @class= "form-control"})
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.AuthorFirstName, "Author First Name:")
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.AuthorFirstName, new { @class= "form-control"})
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Title, "Book Title:")
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Title, new { @class= "form-control"})
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                @Html.ActionLink("Cancel","Index","Book",null, new { @class="btn btn-primary"})
+            </td>
+        </tr>
+    </table>
+}

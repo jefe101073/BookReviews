@@ -9,6 +9,10 @@ namespace BookReviews.Interfaces
 {
     public interface IBookService
     {
+        Task<BookDto?> AddBookAsync(AddBookDto addBookDto);
+        Task<BookDto?> DeleteBookAsync(BookDto bookDto);
         Task<IEnumerable<BookDto>> GetActiveBooksAsync();
+        Task<BookDto?> GetBookByIdAsync(int id);
+        Task<BookDto?> SaveBookAsync(BookDto bookDto);
     }
 }

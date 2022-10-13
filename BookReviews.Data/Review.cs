@@ -15,7 +15,10 @@ namespace BookReviews.Data
         public int UserId { get; set; }
         [Required]
         public int BookId { get; set; }
+        [Required]
         public int StarRatingId { get; set; } // Int based on values *, **, ***, ****, *****
+        [Required]
+        public DateTime DateBookWasRead { get; set; }
         [Required]
         public bool IsDeleted { get; set; } = false;
         public int? DeletedByUserId { get; set; }
