@@ -12,6 +12,8 @@ namespace BookReviews.Models.Dto
         public int Id { get; set; }
         public string? Title { get; set; }
         public int AuthorId { get; set; }
+        public string? AuthorFirstName { get; set; }
+        public string? AuthorLastName { get; set; }
         public int NumberOfPages { get; set; }
         public double? StarRating { get; set; } // Calculated value based on average reviews, value will update when review is added.
         

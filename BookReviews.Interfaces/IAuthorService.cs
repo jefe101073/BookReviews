@@ -9,6 +9,10 @@ namespace BookReviews.Interfaces
 {
     public interface IAuthorService
     {
+        Task<AuthorDto?> AddAuthorAsync(AddAuthorDto addAuthorDto);
+        Task<AuthorDto?> DeleteAuthorAsync(AuthorDto authorDto);
         Task<IEnumerable<AuthorDto>> GetActiveAuthorsAsync();
+        Task<AuthorDto?> GetAuthorByIdAsync(int id);
+        Task<AuthorDto?> SaveAuthorAsync(AuthorDto authorDto);
     }
 }

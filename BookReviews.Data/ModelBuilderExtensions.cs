@@ -97,21 +97,24 @@ namespace BookReviews.Data
                     Id = 1,
                     UserId = 1,
                     BookId = 1,
-                    StarRatingId = 4
+                    StarRatingId = 4,
+                    DateBookWasRead = DateTime.UtcNow
                 },
                 new Review
                 {
                     Id = 2,
                     UserId = 1,
                     BookId = 2,
-                    StarRatingId = 3
+                    StarRatingId = 3,
+                    DateBookWasRead = DateTime.UtcNow
                 },
                 new Review
                 {
                     Id = 3,
                     UserId = 1,
                     BookId = 3,
-                    StarRatingId = 5
+                    StarRatingId = 5,
+                    DateBookWasRead = DateTime.UtcNow
                 }
             );
         }

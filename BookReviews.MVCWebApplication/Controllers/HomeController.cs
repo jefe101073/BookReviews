@@ -31,7 +31,7 @@ namespace BookReviews.MVCWebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(objUser.Email == null || objUser.Password == null)
+                if (objUser.Email == null || objUser.Password == null)
                 {
                     return View();
                 }
@@ -41,12 +41,9 @@ namespace BookReviews.MVCWebApplication.Controllers
                 if (authenticated != null)
                 {
                     HttpContext.Session.SetInt32("UserID", authenticated.Id);
-                    HttpContext.Session.SetString("UserEmail", authenticated.Email);
-                    HttpContext.Session.SetString("UserFirstName", authenticated.FirstName);
-                    HttpContext.Session.SetString("UserLastName", authenticated.LastName);
                 }
 
-                return RedirectToAction("Privacy");
+                return RedirectToAction("Index");
             }
             return View(objUser);
         }
@@ -54,18 +51,17 @@ namespace BookReviews.MVCWebApplication.Controllers
         public IActionResult Index()
         {
             var userId = HttpContext.Session.GetInt32("UserID");
-            if (userId != null)
+            if (userId == null)
             {
-                var lastName = HttpContext.Session.GetString("UserLastName");
-                HttpContext.Session.SetInt32("UserID", (int)userId);
-                return View();
+                return RedirectToAction("Login", "Home");
             }
             else
             {
-                return RedirectToAction("Login");
+                HttpContext.Session.SetInt32("UserID", (int)userId);
+                return View();
             }
         }
-        
+
         public IActionResult Privacy()
         {
             return View();
@@ -76,5 +72,6 @@ namespace BookReviews.MVCWebApplication.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

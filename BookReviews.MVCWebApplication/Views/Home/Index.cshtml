@@ -1,8 +1,48 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "../Shared/_Layout";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    @Html.ActionLink("Authors", "Index", "Author")
+                </th>
+                <td>
+                    <h3>
+                        Add, Edit or Delete from the list of Authors
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    @Html.ActionLink("Books", "Index", "Book")
+                </th>
+                <td>
+                    <h3>
+                        Add, Edit or Delete from the list of Books
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    @Html.ActionLink("Reviews", "Index", "Review")
+                </th>
+                <td>
+                    <h3>
+                        Create book reviews to keep track of what you've read
+                    </h3>
+                </td>
+            </tr>
+    </table>
 </div>
