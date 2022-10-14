@@ -25,7 +25,7 @@ namespace BookReviews.API.Controllers
         /// </summary>
         /// <returns>IEnumerable list of AuthorDtos</returns>
         [HttpGet]
-        public async Task<IEnumerable<AuthorDto>> GetActiveUsersAsync() => await _authorService.GetActiveAuthorsAsync();
+        public async Task<IEnumerable<AuthorDto>> GetActiveAuthorsAsync() => await _authorService.GetActiveAuthorsAsync();
 
         /// <summary>
         /// Gets Author by id.

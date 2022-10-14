@@ -1,9 +1,3 @@
-using BookReviews.API.Controllers;
-using BookReviews.Data;
-using BookReviews.Interfaces;
-using BookReviews.Models.Dto;
-using BookReviews.Tests.DataForTests;
-using Moq;
 
 namespace BookReviews.Tests
 {
@@ -105,26 +99,26 @@ namespace BookReviews.Tests
                 var controller = GetControllerInstance();
 
                 var expectedUsers = new List<UserDto>()
-            {
-                new UserDto()
                 {
-                    Id = 1,
-                    FirstName = "Admin",
-                    LastName = "User",
-                    Email = "admin@admin.com",
-                    IsDeleted = false,
-                    Password = DataHelpers.PasswordEncrypt("password")
-                },
-                new UserDto()
-                {
-                    Id = 2,
-                    FirstName = "Jeff",
-                    LastName = "McCann",
-                    Email = "jefe101073@gmail.com",
-                    IsDeleted = false,
-                    Password = DataHelpers.PasswordEncrypt("password")
-                }
-            };
+                    new UserDto()
+                    {
+                        Id = 1,
+                        FirstName = "Admin",
+                        LastName = "User",
+                        Email = "admin@admin.com",
+                        IsDeleted = false,
+                        Password = DataHelpers.PasswordEncrypt("password")
+                    },
+                    new UserDto()
+                    {
+                        Id = 2,
+                        FirstName = "Jeff",
+                        LastName = "McCann",
+                        Email = "jefe101073@gmail.com",
+                        IsDeleted = false,
+                        Password = DataHelpers.PasswordEncrypt("password")
+                    }
+                };
 
                 // Act
                 var users = await controller.GetActiveUsersAsync();
